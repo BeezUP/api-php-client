@@ -11,14 +11,14 @@
  */
 
 /**
- * BeezUP Merchant API
+ * BeezUP API
  *
- * # The REST API of BeezUP system ## Overview The REST APIs provide programmatic access to read and write BeezUP data.  Basically, with this API you will be able to do everything like you were with your browser on https://go.beezup.com !  The main features are: - Register and manage your account - Create and manage and share your stores with your friends/co-workers. - Import your product catalog and schedule the auto importation - Search the channels your want to use - Configure your channels for your catalogs to export your product information:     - cost and general settings     - category and columns mappings     - your will be able to create and manage your custom column     - put in place exlusion filters based on simple conditions on your product data     - override product values     - get product vision for a channel catalog scope - Analyze and optimize your performance of your catalogs on all yours channels with different type of reportings by day, channel, category and by product. - Automatize your optimisation by using rules! - And of course... Manage your orders harvested from all your marketplaces:     - Synchronize your orders in an uniformized way     - Get the available actions and update the order status - ...and more!  ## Authentication credentials The public API with the base path **_/v2/public** have been put in place to give you an entry point to our system for the user registration, login and lost password. The public API does not require any credentials. We give you the some public list of values and public channels for our public commercial web site [www.beezup.com](http://www.beezup.com).  The user API with the base path **_/v2/user** requires a token which is available on this page: https://go.beezup.com/Account/MyAccount  ## Things to keep in mind ### API Rate Limits - The BeezUP REST API is limited to 100 calls/minute.  ### Media type The default media type for requests and responses is application/json. Where noted, some operations support other content types. If no additional content type is mentioned for a specific operation, then the media type is application/json.  ### Required content type The required and default encoding for the request and responses is UTF8.  ### Required date time format All our date time are formatted in ISO 8601 format: 2014-06-24T16:25:00Z.  ### Base URL The Base URL of the BeezUP API Order Management REST API conforms to the following template.  https://api.beezup.com  All URLs returned by the BeezUP API are relative to this base URL, and all requests to the REST API must use this base URL template.  You can test our API on https://api-docs.beezup.com/swagger-ui\\\\ You can contact us on [gitter, #BeezUP/API](https://gitter.im/BeezUP/API)
+ * # The REST API of BeezUP system ## Overview The REST APIs provide programmatic access to read and write BeezUP data.  Basically, with this API you will be able to do everything like you were with your browser on https://go.beezup.com !  The main features are: - Register and manage your account - Create and manage and share your stores with your friends/co-workers. - Import your product catalog and schedule the auto importation - Search the channels your want to use - Configure your channels for your catalogs to export your product information:     - cost and general settings     - category and columns mappings     - your will be able to create and manage your custom column     - put in place exlusion filters based on simple conditions on your product data     - override product values     - get product vision for a channel catalog scope - Analyze and optimize your performance of your catalogs on all yours channels with different type of reportings by day, channel, category and by product. - Automatize your optimisation by using rules! - And of course... Manage your orders harvested from all your marketplaces:     - Synchronize your orders in an uniformized way     - Get the available actions and update the order status - ...and more!  ## Authentication credentials The public API with the base path **_/v2/public** have been put in place to give you an entry point to our system for the user registration, login and lost password. The public API does not require any credentials. We give you the some public list of values and public channels for our public commercial web site [www.beezup.com](http://www.beezup.com).  The user API with the base path **_/v2/user** requires a token which is available on this page: https://go.beezup.com/Account/MyAccount  ## Things to keep in mind ### API Rate Limits - The BeezUP REST API is limited to 100 calls/minute.  ### Media type The default media type for requests and responses is application/json. Where noted, some operations support other content types. If no additional content type is mentioned for a specific operation, then the media type is application/json.  ### Required content type The required and default encoding for the request and responses is UTF8.  ### Required date time format All our date time are formatted in ISO 8601 format: 2014-06-24T16:25:00Z.  ### Base URL The Base URL of the BeezUP API Order Management REST API conforms to the following template.  https://api.beezup.com  All URLs returned by the BeezUP API are relative to this base URL, and all requests to the REST API must use this base URL template.  You can test our API on https://api-docs.beezup.com/swagger-ui\\ You can contact us on [gitter, #BeezUP/API](https://gitter.im/BeezUP/API)
  *
  * OpenAPI spec version: 2.0
  * Contact: help@beezup.com
  * Generated by: https://github.com/swagger-api/swagger-codegen.git
- * Swagger Codegen version: 2.4.30
+ * Swagger Codegen version: 2.4.0-SNAPSHOT
  */
 
 /**
@@ -28,6 +28,8 @@
  */
 
 namespace Swagger\Client\Model;
+
+use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
@@ -38,7 +40,7 @@ use \Swagger\Client\ObjectSerializer;
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Order extends OrderHeader 
+class Order implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -55,6 +57,25 @@ class Order extends OrderHeader
       * @var string[]
       */
     protected static $swaggerTypes = [
+        'marketplace_technical_code' => '\Swagger\Client\Model\BeezUPCommonMarketplaceTechnicalCode',
+        'account_id' => '\Swagger\Client\Model\AccountId',
+        'beez_up_order_id' => '\Swagger\Client\Model\BeezUPOrderId',
+        'beez_up_order_url' => '\Swagger\Client\Model\BeezUPCommonHttpUrl',
+        'marketplace_business_code' => '\Swagger\Client\Model\BeezUPCommonMarketplaceBusinessCode',
+        'order_marketplace_order_id' => '\Swagger\Client\Model\MarketplaceOrderId',
+        'order_status_beez_up_order_status' => '\Swagger\Client\Model\BeezUPOrderStatus',
+        'order_status_marketplace_order_status' => '\Swagger\Client\Model\MarketplaceOrderStatus',
+        'order_merchant_order_id' => '\Swagger\Client\Model\OrderMerchantOrderId',
+        'order_merchant_e_commerce_software_name' => '\Swagger\Client\Model\OrderMerchantECommerceSoftwareName',
+        'order_merchant_e_commerce_software_version' => '\Swagger\Client\Model\OrderMerchantECommerceSoftwareVersion',
+        'order_purchase_utc_date' => '\DateTime',
+        'order_last_modification_utc_date' => '\DateTime',
+        'order_marketplace_last_modification_utc_date' => '\DateTime',
+        'order_buyer_name' => '\Swagger\Client\Model\OrderBuyerName',
+        'order_total_price' => 'float',
+        'order_currency_code' => '\Swagger\Client\Model\BeezUPCommonCurrencyCode',
+        'processing' => '\Swagger\Client\Model\Processing',
+        'etag' => '\Swagger\Client\Model\Etag',
         'links' => '\Swagger\Client\Model\OrderLinks',
         'order_market_place_channel' => 'string',
         'order_total_tax' => 'float',
@@ -62,8 +83,6 @@ class Order extends OrderHeader
         'order_payment_method' => 'string',
         'order_paying_utc_date' => '\DateTime',
         'order_comment' => 'string',
-        'order_shipping_first_name' => 'string',
-        'order_shipping_last_name' => 'string',
         'order_shipping_civility' => 'string',
         'order_shipping_company_name' => 'string',
         'order_shipping_address_name' => 'string',
@@ -84,8 +103,6 @@ class Order extends OrderHeader
         'order_shipping_earliest_ship_utc_date' => '\DateTime',
         'order_shipping_latest_ship_utc_date' => '\DateTime',
         'order_buyer_identifier' => 'string',
-        'order_buyer_first_name' => 'string',
-        'order_buyer_last_name' => 'string',
         'order_buyer_civility' => 'string',
         'order_buyer_company_name' => 'string',
         'order_buyer_email' => 'string',
@@ -99,13 +116,15 @@ class Order extends OrderHeader
         'order_buyer_address_country_iso_code_alpha2' => 'string',
         'order_buyer_phone' => 'string',
         'order_buyer_mobile_phone' => 'string',
-        'order_is_prime' => 'bool',
         'order_fulfilled_by' => 'string',
-        'order_is_business' => 'bool',
         'order_order_source_uri' => 'string',
+        'order_buyer_company_vat_number' => 'string',
         'order_order_items_source_uri' => 'string',
         'order_items' => '\Swagger\Client\Model\OrderItem[]',
-        'transition_links' => '\Swagger\Client\Model\OrderTransitionLinks'
+        'transition_links' => '\Swagger\Client\Model\OrderTransitionLinks',
+        'order_relay_id' => 'string',
+        'order_is_business' => 'bool',
+        'order_is_prime' => 'bool',
     ];
 
     /**
@@ -114,6 +133,25 @@ class Order extends OrderHeader
       * @var string[]
       */
     protected static $swaggerFormats = [
+        'marketplace_technical_code' => null,
+        'account_id' => null,
+        'beez_up_order_id' => null,
+        'beez_up_order_url' => null,
+        'marketplace_business_code' => null,
+        'order_marketplace_order_id' => null,
+        'order_status_beez_up_order_status' => null,
+        'order_status_marketplace_order_status' => null,
+        'order_merchant_order_id' => null,
+        'order_merchant_e_commerce_software_name' => null,
+        'order_merchant_e_commerce_software_version' => null,
+        'order_purchase_utc_date' => 'date-time',
+        'order_last_modification_utc_date' => 'date-time',
+        'order_marketplace_last_modification_utc_date' => 'date-time',
+        'order_buyer_name' => null,
+        'order_total_price' => 'decimal',
+        'order_currency_code' => null,
+        'processing' => null,
+        'etag' => null,
         'links' => null,
         'order_market_place_channel' => null,
         'order_total_tax' => 'decimal',
@@ -121,8 +159,6 @@ class Order extends OrderHeader
         'order_payment_method' => null,
         'order_paying_utc_date' => 'date-time',
         'order_comment' => null,
-        'order_shipping_first_name' => null,
-        'order_shipping_last_name' => null,
         'order_shipping_civility' => null,
         'order_shipping_company_name' => null,
         'order_shipping_address_name' => null,
@@ -143,8 +179,6 @@ class Order extends OrderHeader
         'order_shipping_earliest_ship_utc_date' => 'date-time',
         'order_shipping_latest_ship_utc_date' => 'date-time',
         'order_buyer_identifier' => null,
-        'order_buyer_first_name' => null,
-        'order_buyer_last_name' => null,
         'order_buyer_civility' => null,
         'order_buyer_company_name' => null,
         'order_buyer_email' => null,
@@ -158,13 +192,15 @@ class Order extends OrderHeader
         'order_buyer_address_country_iso_code_alpha2' => null,
         'order_buyer_phone' => null,
         'order_buyer_mobile_phone' => null,
-        'order_is_prime' => null,
         'order_fulfilled_by' => null,
-        'order_is_business' => null,
+        'order_buyer_company_vat_number' => null,
         'order_order_source_uri' => 'uri',
         'order_order_items_source_uri' => 'uri',
         'order_items' => null,
-        'transition_links' => null
+        'transition_links' => null,
+        'order_relay_id' => null,
+        'order_is_business' => null,
+        'order_is_prime' => null,
     ];
 
     /**
@@ -174,7 +210,7 @@ class Order extends OrderHeader
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes + parent::swaggerTypes();
+        return self::$swaggerTypes;
     }
 
     /**
@@ -184,7 +220,7 @@ class Order extends OrderHeader
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats + parent::swaggerFormats();
+        return self::$swaggerFormats;
     }
 
     /**
@@ -194,6 +230,25 @@ class Order extends OrderHeader
      * @var string[]
      */
     protected static $attributeMap = [
+        'marketplace_technical_code' => 'marketplaceTechnicalCode',
+        'account_id' => 'accountId',
+        'beez_up_order_id' => 'beezUPOrderId',
+        'beez_up_order_url' => 'beezUPOrderUrl',
+        'marketplace_business_code' => 'marketplaceBusinessCode',
+        'order_marketplace_order_id' => 'order_MarketplaceOrderId',
+        'order_status_beez_up_order_status' => 'order_Status_BeezUPOrderStatus',
+        'order_status_marketplace_order_status' => 'order_Status_MarketplaceOrderStatus',
+        'order_merchant_order_id' => 'order_MerchantOrderId',
+        'order_merchant_e_commerce_software_name' => 'order_MerchantECommerceSoftwareName',
+        'order_merchant_e_commerce_software_version' => 'order_MerchantECommerceSoftwareVersion',
+        'order_purchase_utc_date' => 'order_PurchaseUtcDate',
+        'order_last_modification_utc_date' => 'order_LastModificationUtcDate',
+        'order_marketplace_last_modification_utc_date' => 'order_MarketplaceLastModificationUtcDate',
+        'order_buyer_name' => 'order_Buyer_Name',
+        'order_total_price' => 'order_TotalPrice',
+        'order_currency_code' => 'order_CurrencyCode',
+        'processing' => 'processing',
+        'etag' => 'etag',
         'links' => 'links',
         'order_market_place_channel' => 'order_MarketPlaceChannel',
         'order_total_tax' => 'order_TotalTax',
@@ -201,8 +256,6 @@ class Order extends OrderHeader
         'order_payment_method' => 'order_PaymentMethod',
         'order_paying_utc_date' => 'order_PayingUtcDate',
         'order_comment' => 'order_Comment',
-        'order_shipping_first_name' => 'order_Shipping_FirstName',
-        'order_shipping_last_name' => 'order_Shipping_LastName',
         'order_shipping_civility' => 'order_Shipping_Civility',
         'order_shipping_company_name' => 'order_Shipping_CompanyName',
         'order_shipping_address_name' => 'order_Shipping_AddressName',
@@ -223,8 +276,6 @@ class Order extends OrderHeader
         'order_shipping_earliest_ship_utc_date' => 'order_Shipping_EarliestShipUtcDate',
         'order_shipping_latest_ship_utc_date' => 'order_Shipping_LatestShipUtcDate',
         'order_buyer_identifier' => 'order_Buyer_Identifier',
-        'order_buyer_first_name' => 'order_Buyer_FirstName',
-        'order_buyer_last_name' => 'order_Buyer_LastName',
         'order_buyer_civility' => 'order_Buyer_Civility',
         'order_buyer_company_name' => 'order_Buyer_CompanyName',
         'order_buyer_email' => 'order_Buyer_Email',
@@ -238,13 +289,15 @@ class Order extends OrderHeader
         'order_buyer_address_country_iso_code_alpha2' => 'order_Buyer_AddressCountryIsoCodeAlpha2',
         'order_buyer_phone' => 'order_Buyer_Phone',
         'order_buyer_mobile_phone' => 'order_Buyer_MobilePhone',
-        'order_is_prime' => 'order_IsPrime',
-        'order_fulfilled_by' => 'order_FulfilledBy',
-        'order_is_business' => 'order_IsBusiness',
         'order_order_source_uri' => 'order_OrderSourceUri',
+        'order_buyer_company_vat_number' => 'order_Buyer_CompanyVATNumber',
+        'order_fulfilled_by' => 'order_FulfilledBy',
         'order_order_items_source_uri' => 'order_OrderItemsSourceUri',
         'order_items' => 'orderItems',
-        'transition_links' => 'transitionLinks'
+        'transition_links' => 'transitionLinks',
+        'order_relay_id' => 'order_RelayId',
+        'order_is_business' => 'order_IsBusiness',
+        'order_is_prime' => 'order_IsPrime',
     ];
 
     /**
@@ -253,6 +306,25 @@ class Order extends OrderHeader
      * @var string[]
      */
     protected static $setters = [
+        'marketplace_technical_code' => 'setMarketplaceTechnicalCode',
+        'account_id' => 'setAccountId',
+        'beez_up_order_id' => 'setBeezUpOrderId',
+        'beez_up_order_url' => 'setBeezUpOrderUrl',
+        'marketplace_business_code' => 'setMarketplaceBusinessCode',
+        'order_marketplace_order_id' => 'setOrderMarketplaceOrderId',
+        'order_status_beez_up_order_status' => 'setOrderStatusBeezUpOrderStatus',
+        'order_status_marketplace_order_status' => 'setOrderStatusMarketplaceOrderStatus',
+        'order_merchant_order_id' => 'setOrderMerchantOrderId',
+        'order_merchant_e_commerce_software_name' => 'setOrderMerchantECommerceSoftwareName',
+        'order_merchant_e_commerce_software_version' => 'setOrderMerchantECommerceSoftwareVersion',
+        'order_purchase_utc_date' => 'setOrderPurchaseUtcDate',
+        'order_last_modification_utc_date' => 'setOrderLastModificationUtcDate',
+        'order_marketplace_last_modification_utc_date' => 'setOrderMarketplaceLastModificationUtcDate',
+        'order_buyer_name' => 'setOrderBuyerName',
+        'order_total_price' => 'setOrderTotalPrice',
+        'order_currency_code' => 'setOrderCurrencyCode',
+        'processing' => 'setProcessing',
+        'etag' => 'setEtag',
         'links' => 'setLinks',
         'order_market_place_channel' => 'setOrderMarketPlaceChannel',
         'order_total_tax' => 'setOrderTotalTax',
@@ -260,8 +332,6 @@ class Order extends OrderHeader
         'order_payment_method' => 'setOrderPaymentMethod',
         'order_paying_utc_date' => 'setOrderPayingUtcDate',
         'order_comment' => 'setOrderComment',
-        'order_shipping_first_name' => 'setOrderShippingFirstName',
-        'order_shipping_last_name' => 'setOrderShippingLastName',
         'order_shipping_civility' => 'setOrderShippingCivility',
         'order_shipping_company_name' => 'setOrderShippingCompanyName',
         'order_shipping_address_name' => 'setOrderShippingAddressName',
@@ -282,8 +352,6 @@ class Order extends OrderHeader
         'order_shipping_earliest_ship_utc_date' => 'setOrderShippingEarliestShipUtcDate',
         'order_shipping_latest_ship_utc_date' => 'setOrderShippingLatestShipUtcDate',
         'order_buyer_identifier' => 'setOrderBuyerIdentifier',
-        'order_buyer_first_name' => 'setOrderBuyerFirstName',
-        'order_buyer_last_name' => 'setOrderBuyerLastName',
         'order_buyer_civility' => 'setOrderBuyerCivility',
         'order_buyer_company_name' => 'setOrderBuyerCompanyName',
         'order_buyer_email' => 'setOrderBuyerEmail',
@@ -297,13 +365,15 @@ class Order extends OrderHeader
         'order_buyer_address_country_iso_code_alpha2' => 'setOrderBuyerAddressCountryIsoCodeAlpha2',
         'order_buyer_phone' => 'setOrderBuyerPhone',
         'order_buyer_mobile_phone' => 'setOrderBuyerMobilePhone',
-        'order_is_prime' => 'setOrderIsPrime',
-        'order_fulfilled_by' => 'setOrderFulfilledBy',
-        'order_is_business' => 'setOrderIsBusiness',
         'order_order_source_uri' => 'setOrderOrderSourceUri',
         'order_order_items_source_uri' => 'setOrderOrderItemsSourceUri',
         'order_items' => 'setOrderItems',
-        'transition_links' => 'setTransitionLinks'
+        'transition_links' => 'setTransitionLinks',
+        'order_fulfilled_by' => 'setOrderFulfilledBy',
+        'order_buyer_company_vat_number' => 'setOrderBuyerCompanyVATNumber',
+        'order_relay_id' => 'setOrderRelayId',
+        'order_is_business' => 'setOrderIsBusiness',
+        'order_is_prime' => 'setOrderIsPrime',
     ];
 
     /**
@@ -312,6 +382,25 @@ class Order extends OrderHeader
      * @var string[]
      */
     protected static $getters = [
+        'marketplace_technical_code' => 'getMarketplaceTechnicalCode',
+        'account_id' => 'getAccountId',
+        'beez_up_order_id' => 'getBeezUpOrderId',
+        'beez_up_order_url' => 'getBeezUpOrderUrl',
+        'marketplace_business_code' => 'getMarketplaceBusinessCode',
+        'order_marketplace_order_id' => 'getOrderMarketplaceOrderId',
+        'order_status_beez_up_order_status' => 'getOrderStatusBeezUpOrderStatus',
+        'order_status_marketplace_order_status' => 'getOrderStatusMarketplaceOrderStatus',
+        'order_merchant_order_id' => 'getOrderMerchantOrderId',
+        'order_merchant_e_commerce_software_name' => 'getOrderMerchantECommerceSoftwareName',
+        'order_merchant_e_commerce_software_version' => 'getOrderMerchantECommerceSoftwareVersion',
+        'order_purchase_utc_date' => 'getOrderPurchaseUtcDate',
+        'order_last_modification_utc_date' => 'getOrderLastModificationUtcDate',
+        'order_marketplace_last_modification_utc_date' => 'getOrderMarketplaceLastModificationUtcDate',
+        'order_buyer_name' => 'getOrderBuyerName',
+        'order_total_price' => 'getOrderTotalPrice',
+        'order_currency_code' => 'getOrderCurrencyCode',
+        'processing' => 'getProcessing',
+        'etag' => 'getEtag',
         'links' => 'getLinks',
         'order_market_place_channel' => 'getOrderMarketPlaceChannel',
         'order_total_tax' => 'getOrderTotalTax',
@@ -319,8 +408,6 @@ class Order extends OrderHeader
         'order_payment_method' => 'getOrderPaymentMethod',
         'order_paying_utc_date' => 'getOrderPayingUtcDate',
         'order_comment' => 'getOrderComment',
-        'order_shipping_first_name' => 'getOrderShippingFirstName',
-        'order_shipping_last_name' => 'getOrderShippingLastName',
         'order_shipping_civility' => 'getOrderShippingCivility',
         'order_shipping_company_name' => 'getOrderShippingCompanyName',
         'order_shipping_address_name' => 'getOrderShippingAddressName',
@@ -341,8 +428,6 @@ class Order extends OrderHeader
         'order_shipping_earliest_ship_utc_date' => 'getOrderShippingEarliestShipUtcDate',
         'order_shipping_latest_ship_utc_date' => 'getOrderShippingLatestShipUtcDate',
         'order_buyer_identifier' => 'getOrderBuyerIdentifier',
-        'order_buyer_first_name' => 'getOrderBuyerFirstName',
-        'order_buyer_last_name' => 'getOrderBuyerLastName',
         'order_buyer_civility' => 'getOrderBuyerCivility',
         'order_buyer_company_name' => 'getOrderBuyerCompanyName',
         'order_buyer_email' => 'getOrderBuyerEmail',
@@ -356,13 +441,15 @@ class Order extends OrderHeader
         'order_buyer_address_country_iso_code_alpha2' => 'getOrderBuyerAddressCountryIsoCodeAlpha2',
         'order_buyer_phone' => 'getOrderBuyerPhone',
         'order_buyer_mobile_phone' => 'getOrderBuyerMobilePhone',
-        'order_is_prime' => 'getOrderIsPrime',
-        'order_fulfilled_by' => 'getOrderFulfilledBy',
-        'order_is_business' => 'getOrderIsBusiness',
         'order_order_source_uri' => 'getOrderOrderSourceUri',
         'order_order_items_source_uri' => 'getOrderOrderItemsSourceUri',
         'order_items' => 'getOrderItems',
-        'transition_links' => 'getTransitionLinks'
+        'transition_links' => 'getTransitionLinks',
+        'order_fulfilled_by' => 'getOrderFulfilledBy',
+        'order_buyer_company_vat_number' => 'getOrderBuyerCompanyVATNumber',
+        'order_relay_id' => 'getOrderRelayId',
+        'order_is_business' => 'getOrderIsBusiness',
+        'order_is_prime' => 'getOrderIsPrime',
     ];
 
     /**
@@ -373,7 +460,7 @@ class Order extends OrderHeader
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -383,7 +470,7 @@ class Order extends OrderHeader
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -393,7 +480,7 @@ class Order extends OrderHeader
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -410,6 +497,12 @@ class Order extends OrderHeader
 
     
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -419,8 +512,25 @@ class Order extends OrderHeader
      */
     public function __construct(array $data = null)
     {
-        parent::__construct($data);
-
+        $this->container['marketplace_technical_code'] = isset($data['marketplace_technical_code']) ? $data['marketplace_technical_code'] : null;
+        $this->container['account_id'] = isset($data['account_id']) ? $data['account_id'] : null;
+        $this->container['beez_up_order_id'] = isset($data['beez_up_order_id']) ? $data['beez_up_order_id'] : null;
+        $this->container['beez_up_order_url'] = isset($data['beez_up_order_url']) ? $data['beez_up_order_url'] : null;
+        $this->container['marketplace_business_code'] = isset($data['marketplace_business_code']) ? $data['marketplace_business_code'] : null;
+        $this->container['order_marketplace_order_id'] = isset($data['order_marketplace_order_id']) ? $data['order_marketplace_order_id'] : null;
+        $this->container['order_status_beez_up_order_status'] = isset($data['order_status_beez_up_order_status']) ? $data['order_status_beez_up_order_status'] : null;
+        $this->container['order_status_marketplace_order_status'] = isset($data['order_status_marketplace_order_status']) ? $data['order_status_marketplace_order_status'] : null;
+        $this->container['order_merchant_order_id'] = isset($data['order_merchant_order_id']) ? $data['order_merchant_order_id'] : null;
+        $this->container['order_merchant_e_commerce_software_name'] = isset($data['order_merchant_e_commerce_software_name']) ? $data['order_merchant_e_commerce_software_name'] : null;
+        $this->container['order_merchant_e_commerce_software_version'] = isset($data['order_merchant_e_commerce_software_version']) ? $data['order_merchant_e_commerce_software_version'] : null;
+        $this->container['order_purchase_utc_date'] = isset($data['order_purchase_utc_date']) ? $data['order_purchase_utc_date'] : null;
+        $this->container['order_last_modification_utc_date'] = isset($data['order_last_modification_utc_date']) ? $data['order_last_modification_utc_date'] : null;
+        $this->container['order_marketplace_last_modification_utc_date'] = isset($data['order_marketplace_last_modification_utc_date']) ? $data['order_marketplace_last_modification_utc_date'] : null;
+        $this->container['order_buyer_name'] = isset($data['order_buyer_name']) ? $data['order_buyer_name'] : null;
+        $this->container['order_total_price'] = isset($data['order_total_price']) ? $data['order_total_price'] : null;
+        $this->container['order_currency_code'] = isset($data['order_currency_code']) ? $data['order_currency_code'] : null;
+        $this->container['processing'] = isset($data['processing']) ? $data['processing'] : null;
+        $this->container['etag'] = isset($data['etag']) ? $data['etag'] : null;
         $this->container['links'] = isset($data['links']) ? $data['links'] : null;
         $this->container['order_market_place_channel'] = isset($data['order_market_place_channel']) ? $data['order_market_place_channel'] : null;
         $this->container['order_total_tax'] = isset($data['order_total_tax']) ? $data['order_total_tax'] : null;
@@ -428,8 +538,6 @@ class Order extends OrderHeader
         $this->container['order_payment_method'] = isset($data['order_payment_method']) ? $data['order_payment_method'] : null;
         $this->container['order_paying_utc_date'] = isset($data['order_paying_utc_date']) ? $data['order_paying_utc_date'] : null;
         $this->container['order_comment'] = isset($data['order_comment']) ? $data['order_comment'] : null;
-        $this->container['order_shipping_first_name'] = isset($data['order_shipping_first_name']) ? $data['order_shipping_first_name'] : null;
-        $this->container['order_shipping_last_name'] = isset($data['order_shipping_last_name']) ? $data['order_shipping_last_name'] : null;
         $this->container['order_shipping_civility'] = isset($data['order_shipping_civility']) ? $data['order_shipping_civility'] : null;
         $this->container['order_shipping_company_name'] = isset($data['order_shipping_company_name']) ? $data['order_shipping_company_name'] : null;
         $this->container['order_shipping_address_name'] = isset($data['order_shipping_address_name']) ? $data['order_shipping_address_name'] : null;
@@ -450,8 +558,6 @@ class Order extends OrderHeader
         $this->container['order_shipping_earliest_ship_utc_date'] = isset($data['order_shipping_earliest_ship_utc_date']) ? $data['order_shipping_earliest_ship_utc_date'] : null;
         $this->container['order_shipping_latest_ship_utc_date'] = isset($data['order_shipping_latest_ship_utc_date']) ? $data['order_shipping_latest_ship_utc_date'] : null;
         $this->container['order_buyer_identifier'] = isset($data['order_buyer_identifier']) ? $data['order_buyer_identifier'] : null;
-        $this->container['order_buyer_first_name'] = isset($data['order_buyer_first_name']) ? $data['order_buyer_first_name'] : null;
-        $this->container['order_buyer_last_name'] = isset($data['order_buyer_last_name']) ? $data['order_buyer_last_name'] : null;
         $this->container['order_buyer_civility'] = isset($data['order_buyer_civility']) ? $data['order_buyer_civility'] : null;
         $this->container['order_buyer_company_name'] = isset($data['order_buyer_company_name']) ? $data['order_buyer_company_name'] : null;
         $this->container['order_buyer_email'] = isset($data['order_buyer_email']) ? $data['order_buyer_email'] : null;
@@ -465,13 +571,16 @@ class Order extends OrderHeader
         $this->container['order_buyer_address_country_iso_code_alpha2'] = isset($data['order_buyer_address_country_iso_code_alpha2']) ? $data['order_buyer_address_country_iso_code_alpha2'] : null;
         $this->container['order_buyer_phone'] = isset($data['order_buyer_phone']) ? $data['order_buyer_phone'] : null;
         $this->container['order_buyer_mobile_phone'] = isset($data['order_buyer_mobile_phone']) ? $data['order_buyer_mobile_phone'] : null;
-        $this->container['order_is_prime'] = isset($data['order_is_prime']) ? $data['order_is_prime'] : null;
-        $this->container['order_fulfilled_by'] = isset($data['order_fulfilled_by']) ? $data['order_fulfilled_by'] : null;
-        $this->container['order_is_business'] = isset($data['order_is_business']) ? $data['order_is_business'] : null;
         $this->container['order_order_source_uri'] = isset($data['order_order_source_uri']) ? $data['order_order_source_uri'] : null;
         $this->container['order_order_items_source_uri'] = isset($data['order_order_items_source_uri']) ? $data['order_order_items_source_uri'] : null;
         $this->container['order_items'] = isset($data['order_items']) ? $data['order_items'] : null;
         $this->container['transition_links'] = isset($data['transition_links']) ? $data['transition_links'] : null;
+        $this->container['order_fulfilled_by'] = isset($data['order_fulfilled_by']) ? $data['order_fulfilled_by'] : null;
+        $this->container['order_buyer_company_vat_number'] = isset($data['order_buyer_company_vat_number']) ? $data['order_buyer_company_vat_number'] : null;
+        $this->container['order_relay_id'] = isset($data['order_relay_id']) ? $data['order_relay_id'] : null;
+        $this->container['order_is_business'] = isset($data['order_is_business']) ? $data['order_is_business'] : null;
+        $this->container['order_is_prime'] = isset($data['order_is_prime']) ? $data['order_is_prime'] : null;
+
     }
 
     /**
@@ -481,8 +590,41 @@ class Order extends OrderHeader
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
+        if ($this->container['marketplace_technical_code'] === null) {
+            $invalidProperties[] = "'marketplace_technical_code' can't be null";
+        }
+        if ($this->container['account_id'] === null) {
+            $invalidProperties[] = "'account_id' can't be null";
+        }
+        if ($this->container['beez_up_order_id'] === null) {
+            $invalidProperties[] = "'beez_up_order_id' can't be null";
+        }
+        if ($this->container['marketplace_business_code'] === null) {
+            $invalidProperties[] = "'marketplace_business_code' can't be null";
+        }
+        if ($this->container['order_marketplace_order_id'] === null) {
+            $invalidProperties[] = "'order_marketplace_order_id' can't be null";
+        }
+        if ($this->container['order_status_beez_up_order_status'] === null) {
+            $invalidProperties[] = "'order_status_beez_up_order_status' can't be null";
+        }
+        if ($this->container['order_purchase_utc_date'] === null) {
+            $invalidProperties[] = "'order_purchase_utc_date' can't be null";
+        }
+        if ($this->container['order_last_modification_utc_date'] === null) {
+            $invalidProperties[] = "'order_last_modification_utc_date' can't be null";
+        }
+        if ($this->container['order_marketplace_last_modification_utc_date'] === null) {
+            $invalidProperties[] = "'order_marketplace_last_modification_utc_date' can't be null";
+        }
+        if ($this->container['processing'] === null) {
+            $invalidProperties[] = "'processing' can't be null";
+        }
+        if ($this->container['etag'] === null) {
+            $invalidProperties[] = "'etag' can't be null";
+        }
         if ($this->container['links'] === null) {
             $invalidProperties[] = "'links' can't be null";
         }
@@ -503,9 +645,611 @@ class Order extends OrderHeader
      */
     public function valid()
     {
-        return count($this->listInvalidProperties()) === 0;
+
+        if ($this->container['marketplace_technical_code'] === null) {
+            return false;
+        }
+        if ($this->container['account_id'] === null) {
+            return false;
+        }
+        if ($this->container['beez_up_order_id'] === null) {
+            return false;
+        }
+        if ($this->container['marketplace_business_code'] === null) {
+            return false;
+        }
+        if ($this->container['order_marketplace_order_id'] === null) {
+            return false;
+        }
+        if ($this->container['order_status_beez_up_order_status'] === null) {
+            return false;
+        }
+        if ($this->container['order_purchase_utc_date'] === null) {
+            return false;
+        }
+        if ($this->container['order_last_modification_utc_date'] === null) {
+            return false;
+        }
+        if ($this->container['order_marketplace_last_modification_utc_date'] === null) {
+            return false;
+        }
+        if ($this->container['processing'] === null) {
+            return false;
+        }
+        if ($this->container['etag'] === null) {
+            return false;
+        }
+        if ($this->container['links'] === null) {
+            return false;
+        }
+        if ($this->container['order_items'] === null) {
+            return false;
+        }
+        if ($this->container['transition_links'] === null) {
+            return false;
+        }
+        return true;
     }
 
+
+
+    /**
+     * Sets order_is_business
+     *
+     * @param string $order_is_business
+     *
+     * @return $this
+     */
+    public function setOrderIsBusiness($order_is_business)
+    {
+        $this->container['order_is_business'] = $order_is_business;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_is_business
+     *
+     * @return string
+     */
+    public function getOrderIsBusiness()
+    {
+        return $this->container['order_is_business'];
+    }
+
+
+
+    /**
+     * Sets order_is_prime
+     *
+     * @param string $order_is_prime
+     *
+     * @return $this
+     */
+    public function setOrderIsPrime($order_is_prime)
+    {
+        $this->container['order_is_prime'] = $order_is_prime;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_is_prime
+     *
+     * @return string
+     */
+    public function getOrderIsPrime()
+    {
+        return $this->container['order_is_prime'];
+    }
+
+
+
+    public function setOrderRelayId($order_relay_id) {
+        $this->container['order_relay_id'] = $order_relay_id;
+        return $this;
+    }
+
+
+    public function getOrderRelayId() {
+        return $this->container['order_relay_id'];
+    }
+
+
+
+
+    public function setOrderBuyerCompanyVATNumber($order_buyer_company_vat_number) {
+        $this->container['order_buyer_company_vat_number'] = $order_buyer_company_vat_number;
+        return $this;
+    }
+
+
+    public function getOrderBuyerCompanyVATNumber() {
+        return $this->container['order_buyer_company_vat_number'];
+    }
+
+
+
+    /**
+     * Sets order_fulfilled_by
+     *
+     * @param string $order_fulfilled_by
+     *
+     * @return $this
+     */
+    public function setOrderFulfilledBy($order_fulfilled_by)
+    {
+        $this->container['order_fulfilled_by'] = $order_fulfilled_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_fulfilled_by
+     *
+     * @return string
+     */
+    public function getOrderFulfilledBy()
+    {
+        return $this->container['order_fulfilled_by'];
+    }
+
+
+    /**
+     * Gets marketplace_technical_code
+     *
+     * @return \Swagger\Client\Model\BeezUPCommonMarketplaceTechnicalCode
+     */
+    public function getMarketplaceTechnicalCode()
+    {
+        return $this->container['marketplace_technical_code'];
+    }
+
+    /**
+     * Sets marketplace_technical_code
+     *
+     * @param \Swagger\Client\Model\BeezUPCommonMarketplaceTechnicalCode $marketplace_technical_code marketplace_technical_code
+     *
+     * @return $this
+     */
+    public function setMarketplaceTechnicalCode($marketplace_technical_code)
+    {
+        $this->container['marketplace_technical_code'] = $marketplace_technical_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets account_id
+     *
+     * @return \Swagger\Client\Model\AccountId
+     */
+    public function getAccountId()
+    {
+        return $this->container['account_id'];
+    }
+
+    /**
+     * Sets account_id
+     *
+     * @param \Swagger\Client\Model\AccountId $account_id account_id
+     *
+     * @return $this
+     */
+    public function setAccountId($account_id)
+    {
+        $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets beez_up_order_id
+     *
+     * @return \Swagger\Client\Model\BeezUPOrderId
+     */
+    public function getBeezUpOrderId()
+    {
+        return $this->container['beez_up_order_id'];
+    }
+
+    /**
+     * Sets beez_up_order_id
+     *
+     * @param \Swagger\Client\Model\BeezUPOrderId $beez_up_order_id beez_up_order_id
+     *
+     * @return $this
+     */
+    public function setBeezUpOrderId($beez_up_order_id)
+    {
+        $this->container['beez_up_order_id'] = $beez_up_order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets beez_up_order_url
+     *
+     * @return \Swagger\Client\Model\BeezUPCommonHttpUrl
+     */
+    public function getBeezUpOrderUrl()
+    {
+        return $this->container['beez_up_order_url'];
+    }
+
+    /**
+     * Sets beez_up_order_url
+     *
+     * @param \Swagger\Client\Model\BeezUPCommonHttpUrl $beez_up_order_url beez_up_order_url
+     *
+     * @return $this
+     */
+    public function setBeezUpOrderUrl($beez_up_order_url)
+    {
+        $this->container['beez_up_order_url'] = $beez_up_order_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets marketplace_business_code
+     *
+     * @return \Swagger\Client\Model\BeezUPCommonMarketplaceBusinessCode
+     */
+    public function getMarketplaceBusinessCode()
+    {
+        return $this->container['marketplace_business_code'];
+    }
+
+    /**
+     * Sets marketplace_business_code
+     *
+     * @param \Swagger\Client\Model\BeezUPCommonMarketplaceBusinessCode $marketplace_business_code marketplace_business_code
+     *
+     * @return $this
+     */
+    public function setMarketplaceBusinessCode($marketplace_business_code)
+    {
+        $this->container['marketplace_business_code'] = $marketplace_business_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_marketplace_order_id
+     *
+     * @return \Swagger\Client\Model\MarketplaceOrderId
+     */
+    public function getOrderMarketplaceOrderId()
+    {
+        return $this->container['order_marketplace_order_id'];
+    }
+
+    /**
+     * Sets order_marketplace_order_id
+     *
+     * @param \Swagger\Client\Model\MarketplaceOrderId $order_marketplace_order_id order_marketplace_order_id
+     *
+     * @return $this
+     */
+    public function setOrderMarketplaceOrderId($order_marketplace_order_id)
+    {
+        $this->container['order_marketplace_order_id'] = $order_marketplace_order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_status_beez_up_order_status
+     *
+     * @return \Swagger\Client\Model\BeezUPOrderStatus
+     */
+    public function getOrderStatusBeezUpOrderStatus()
+    {
+        return $this->container['order_status_beez_up_order_status'];
+    }
+
+    /**
+     * Sets order_status_beez_up_order_status
+     *
+     * @param \Swagger\Client\Model\BeezUPOrderStatus $order_status_beez_up_order_status order_status_beez_up_order_status
+     *
+     * @return $this
+     */
+    public function setOrderStatusBeezUpOrderStatus($order_status_beez_up_order_status)
+    {
+        $this->container['order_status_beez_up_order_status'] = $order_status_beez_up_order_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_status_marketplace_order_status
+     *
+     * @return \Swagger\Client\Model\MarketplaceOrderStatus
+     */
+    public function getOrderStatusMarketplaceOrderStatus()
+    {
+        return $this->container['order_status_marketplace_order_status'];
+    }
+
+    /**
+     * Sets order_status_marketplace_order_status
+     *
+     * @param \Swagger\Client\Model\MarketplaceOrderStatus $order_status_marketplace_order_status order_status_marketplace_order_status
+     *
+     * @return $this
+     */
+    public function setOrderStatusMarketplaceOrderStatus($order_status_marketplace_order_status)
+    {
+        $this->container['order_status_marketplace_order_status'] = $order_status_marketplace_order_status;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_merchant_order_id
+     *
+     * @return \Swagger\Client\Model\OrderMerchantOrderId
+     */
+    public function getOrderMerchantOrderId()
+    {
+        return $this->container['order_merchant_order_id'];
+    }
+
+    /**
+     * Sets order_merchant_order_id
+     *
+     * @param \Swagger\Client\Model\OrderMerchantOrderId $order_merchant_order_id order_merchant_order_id
+     *
+     * @return $this
+     */
+    public function setOrderMerchantOrderId($order_merchant_order_id)
+    {
+        $this->container['order_merchant_order_id'] = $order_merchant_order_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_merchant_e_commerce_software_name
+     *
+     * @return \Swagger\Client\Model\OrderMerchantECommerceSoftwareName
+     */
+    public function getOrderMerchantECommerceSoftwareName()
+    {
+        return $this->container['order_merchant_e_commerce_software_name'];
+    }
+
+    /**
+     * Sets order_merchant_e_commerce_software_name
+     *
+     * @param \Swagger\Client\Model\OrderMerchantECommerceSoftwareName $order_merchant_e_commerce_software_name order_merchant_e_commerce_software_name
+     *
+     * @return $this
+     */
+    public function setOrderMerchantECommerceSoftwareName($order_merchant_e_commerce_software_name)
+    {
+        $this->container['order_merchant_e_commerce_software_name'] = $order_merchant_e_commerce_software_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_merchant_e_commerce_software_version
+     *
+     * @return \Swagger\Client\Model\OrderMerchantECommerceSoftwareVersion
+     */
+    public function getOrderMerchantECommerceSoftwareVersion()
+    {
+        return $this->container['order_merchant_e_commerce_software_version'];
+    }
+
+    /**
+     * Sets order_merchant_e_commerce_software_version
+     *
+     * @param \Swagger\Client\Model\OrderMerchantECommerceSoftwareVersion $order_merchant_e_commerce_software_version order_merchant_e_commerce_software_version
+     *
+     * @return $this
+     */
+    public function setOrderMerchantECommerceSoftwareVersion($order_merchant_e_commerce_software_version)
+    {
+        $this->container['order_merchant_e_commerce_software_version'] = $order_merchant_e_commerce_software_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_purchase_utc_date
+     *
+     * @return \DateTime
+     */
+    public function getOrderPurchaseUtcDate()
+    {
+        return $this->container['order_purchase_utc_date'];
+    }
+
+    /**
+     * Sets order_purchase_utc_date
+     *
+     * @param \DateTime $order_purchase_utc_date The purchase date of this order
+     *
+     * @return $this
+     */
+    public function setOrderPurchaseUtcDate($order_purchase_utc_date)
+    {
+        $this->container['order_purchase_utc_date'] = $order_purchase_utc_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_last_modification_utc_date
+     *
+     * @return \DateTime
+     */
+    public function getOrderLastModificationUtcDate()
+    {
+        return $this->container['order_last_modification_utc_date'];
+    }
+
+    /**
+     * Sets order_last_modification_utc_date
+     *
+     * @param \DateTime $order_last_modification_utc_date The last modification UTC date done by BeezUP of this order
+     *
+     * @return $this
+     */
+    public function setOrderLastModificationUtcDate($order_last_modification_utc_date)
+    {
+        $this->container['order_last_modification_utc_date'] = $order_last_modification_utc_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_marketplace_last_modification_utc_date
+     *
+     * @return \DateTime
+     */
+    public function getOrderMarketplaceLastModificationUtcDate()
+    {
+        return $this->container['order_marketplace_last_modification_utc_date'];
+    }
+
+    /**
+     * Sets order_marketplace_last_modification_utc_date
+     *
+     * @param \DateTime $order_marketplace_last_modification_utc_date The last modification UTC date done by the marketplace on this order
+     *
+     * @return $this
+     */
+    public function setOrderMarketplaceLastModificationUtcDate($order_marketplace_last_modification_utc_date)
+    {
+        $this->container['order_marketplace_last_modification_utc_date'] = $order_marketplace_last_modification_utc_date;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_buyer_name
+     *
+     * @return \Swagger\Client\Model\OrderBuyerName
+     */
+    public function getOrderBuyerName()
+    {
+        return $this->container['order_buyer_name'];
+    }
+
+    /**
+     * Sets order_buyer_name
+     *
+     * @param \Swagger\Client\Model\OrderBuyerName $order_buyer_name order_buyer_name
+     *
+     * @return $this
+     */
+    public function setOrderBuyerName($order_buyer_name)
+    {
+        $this->container['order_buyer_name'] = $order_buyer_name;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_total_price
+     *
+     * @return float
+     */
+    public function getOrderTotalPrice()
+    {
+        return $this->container['order_total_price'];
+    }
+
+    /**
+     * Sets order_total_price
+     *
+     * @param float $order_total_price The total price of this order (corresponding to the amount paid by the customer)
+     *
+     * @return $this
+     */
+    public function setOrderTotalPrice($order_total_price)
+    {
+        $this->container['order_total_price'] = $order_total_price;
+
+        return $this;
+    }
+
+    /**
+     * Gets order_currency_code
+     *
+     * @return \Swagger\Client\Model\BeezUPCommonCurrencyCode
+     */
+    public function getOrderCurrencyCode()
+    {
+        return $this->container['order_currency_code'];
+    }
+
+    /**
+     * Sets order_currency_code
+     *
+     * @param \Swagger\Client\Model\BeezUPCommonCurrencyCode $order_currency_code order_currency_code
+     *
+     * @return $this
+     */
+    public function setOrderCurrencyCode($order_currency_code)
+    {
+        $this->container['order_currency_code'] = $order_currency_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets processing
+     *
+     * @return \Swagger\Client\Model\Processing
+     */
+    public function getProcessing()
+    {
+        return $this->container['processing'];
+    }
+
+    /**
+     * Sets processing
+     *
+     * @param \Swagger\Client\Model\Processing $processing processing
+     *
+     * @return $this
+     */
+    public function setProcessing($processing)
+    {
+        $this->container['processing'] = $processing;
+
+        return $this;
+    }
+
+    /**
+     * Gets etag
+     *
+     * @return \Swagger\Client\Model\Etag
+     */
+    public function getEtag()
+    {
+        return $this->container['etag'];
+    }
+
+    /**
+     * Sets etag
+     *
+     * @param \Swagger\Client\Model\Etag $etag etag
+     *
+     * @return $this
+     */
+    public function setEtag($etag)
+    {
+        $this->container['etag'] = $etag;
+
+        return $this;
+    }
 
     /**
      * Gets links
@@ -671,54 +1415,6 @@ class Order extends OrderHeader
     public function setOrderComment($order_comment)
     {
         $this->container['order_comment'] = $order_comment;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_shipping_first_name
-     *
-     * @return string
-     */
-    public function getOrderShippingFirstName()
-    {
-        return $this->container['order_shipping_first_name'];
-    }
-
-    /**
-     * Sets order_shipping_first_name
-     *
-     * @param string $order_shipping_first_name Order Shipping first name
-     *
-     * @return $this
-     */
-    public function setOrderShippingFirstName($order_shipping_first_name)
-    {
-        $this->container['order_shipping_first_name'] = $order_shipping_first_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_shipping_last_name
-     *
-     * @return string
-     */
-    public function getOrderShippingLastName()
-    {
-        return $this->container['order_shipping_last_name'];
-    }
-
-    /**
-     * Sets order_shipping_last_name
-     *
-     * @param string $order_shipping_last_name Order Shipping last name
-     *
-     * @return $this
-     */
-    public function setOrderShippingLastName($order_shipping_last_name)
-    {
-        $this->container['order_shipping_last_name'] = $order_shipping_last_name;
 
         return $this;
     }
@@ -1204,54 +1900,6 @@ class Order extends OrderHeader
     }
 
     /**
-     * Gets order_buyer_first_name
-     *
-     * @return string
-     */
-    public function getOrderBuyerFirstName()
-    {
-        return $this->container['order_buyer_first_name'];
-    }
-
-    /**
-     * Sets order_buyer_first_name
-     *
-     * @param string $order_buyer_first_name Order Buyer first name
-     *
-     * @return $this
-     */
-    public function setOrderBuyerFirstName($order_buyer_first_name)
-    {
-        $this->container['order_buyer_first_name'] = $order_buyer_first_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_buyer_last_name
-     *
-     * @return string
-     */
-    public function getOrderBuyerLastName()
-    {
-        return $this->container['order_buyer_last_name'];
-    }
-
-    /**
-     * Sets order_buyer_last_name
-     *
-     * @param string $order_buyer_last_name Order Buyer last name
-     *
-     * @return $this
-     */
-    public function setOrderBuyerLastName($order_buyer_last_name)
-    {
-        $this->container['order_buyer_last_name'] = $order_buyer_last_name;
-
-        return $this;
-    }
-
-    /**
      * Gets order_buyer_civility
      *
      * @return string
@@ -1564,78 +2212,6 @@ class Order extends OrderHeader
     }
 
     /**
-     * Gets order_is_prime
-     *
-     * @return bool
-     */
-    public function getOrderIsPrime()
-    {
-        return $this->container['order_is_prime'];
-    }
-
-    /**
-     * Sets order_is_prime
-     *
-     * @param bool $order_is_prime Indicates if the order is considered as Prime (only on Amazon)
-     *
-     * @return $this
-     */
-    public function setOrderIsPrime($order_is_prime)
-    {
-        $this->container['order_is_prime'] = $order_is_prime;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_fulfilled_by
-     *
-     * @return string
-     */
-    public function getOrderFulfilledBy()
-    {
-        return $this->container['order_fulfilled_by'];
-    }
-
-    /**
-     * Sets order_fulfilled_by
-     *
-     * @param string $order_fulfilled_by The order FulfilledBy
-     *
-     * @return $this
-     */
-    public function setOrderFulfilledBy($order_fulfilled_by)
-    {
-        $this->container['order_fulfilled_by'] = $order_fulfilled_by;
-
-        return $this;
-    }
-
-    /**
-     * Gets order_is_business
-     *
-     * @return bool
-     */
-    public function getOrderIsBusiness()
-    {
-        return $this->container['order_is_business'];
-    }
-
-    /**
-     * Sets order_is_business
-     *
-     * @param bool $order_is_business The order IsBusiness
-     *
-     * @return $this
-     */
-    public function setOrderIsBusiness($order_is_business)
-    {
-        $this->container['order_is_business'] = $order_is_business;
-
-        return $this;
-    }
-
-    /**
      * Gets order_order_source_uri
      *
      * @return string
@@ -1737,7 +2313,6 @@ class Order extends OrderHeader
      *
      * @return boolean
      */
-    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -1750,7 +2325,6 @@ class Order extends OrderHeader
      *
      * @return mixed
      */
-    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
@@ -1764,7 +2338,6 @@ class Order extends OrderHeader
      *
      * @return void
      */
-    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -1781,7 +2354,6 @@ class Order extends OrderHeader
      *
      * @return void
      */
-    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
@@ -1804,5 +2376,3 @@ class Order extends OrderHeader
         return json_encode(ObjectSerializer::sanitizeForSerialization($this));
     }
 }
-
-
