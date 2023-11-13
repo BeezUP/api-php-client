@@ -439,7 +439,8 @@ class MarketplacesOrdersOrderApi
         if ($this->config->getUserAgent()) {
             $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
         }
-
+        $apiKey = $this->config->getApiKeyWithPrefix('Ocp-Apim-Subscription-Key');
+        $headers['Ocp-Apim-Subscription-Key'] = $apiKey;
         $headers = array_merge(
             $defaultHeaders,
             $headerParams,
