@@ -1,3 +1,6 @@
+# ⚠️ DEPRECATED ⚠️
+ This repository is no longer maintained. You can generate your own PHP client for our public API using our [official API documentation](https://api-docs.beezup.com/).
+ 
  # SwaggerClient-php
  ### The REST API of BeezUP system 
  ##### Overview 
